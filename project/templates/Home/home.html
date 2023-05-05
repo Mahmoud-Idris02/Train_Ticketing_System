@@ -1,0 +1,123 @@
+{% load static %}
+
+
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Train Ticketing System</title>
+  <link rel="icon" type="image/png" href="{% static 'img/icon.jpeg' %}">
+  <link rel="stylesheet" href="{%static 'CSS/style.css'%}">
+</head>
+<style>
+  body{
+    background-image: url("{%static 'img/background2.jpg'%}");
+  }
+</style>
+<body>
+  <header>
+    <h1>Train Ticketing System</h1>
+  </header>
+  <main>
+    <div class="panel">
+    <section>
+      <h2>Search Train Schedules</h2>
+      <form method="POST" action="{% url 'home' %}">
+        {% csrf_token %}
+        <label for="from"><b>From:</b></label>
+        <input type="text" id="from" name="from"><br>
+      
+        <label for="to"><b>To:</b></label>
+        <input type="text" id="to" name="to"><br>
+
+        <button type="submit">Search</button>
+      </form>
+    </section>
+
+    <section>
+      <h2>Available Train Schedules</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Trip ID</th>
+            <th>Train Number</th>
+            <th>Departure Time</th>
+            <th>Arrival Time</th>
+            <th>Date</th>
+            <th>Travel Duration</th>
+            <th>Ticket Price</th>
+            <!-- <th>Book Now</th> -->
+          
+          </tr>
+        </thead>
+        <tbody>
+          <!-- showing all trips  in the table  -->
+          {% for x in trips %}
+          <tr>
+          <td>{{x.tripId}}</td>
+          <td>{{x.trainNum}}</td>
+          <td>{{x.departureTime}}</td>
+          <td>{{x.arrivalTime}}</td>
+          <td> {{x.date}} </td>
+          <td>{{x.travelDuration}}</td>
+          <td>{{x.ticketPrice}}</td>
+          <!-- <td><button trinNum="{{x.trinNum}}" depTime="{{x.departureTime}}" arrTime="{{x.arrivalTime}}" ticketPrice="{{x.ticketPrice}}">book</button></td> -->
+        </tr>
+          {%endfor%}
+          
+        </tbody>
+      </table><br>
+    </section>
+
+    <section>
+      <h2>Book Your Tickets</h2>
+      <form method="POST" action="{% url 'book_trip' %}">
+        {% csrf_token %}
+        <label for="tripId">Trip ID:</label>
+        <input type="text" id="tripId" name="tripId"  ><br>
+
+        <label for="train-number">Train Number:</label>
+        <input type="text" id="train-number" name="train-number" ><br>
+
+        <!-- <label for="departure-time">Departure Time:</label>
+        <input type="text" id="departure-time" name="departure-time" value="{{depTime}}" readonly><br>
+
+        <label for="arrival-time">Arrival Time:</label>
+        <input type="text" id="arrival-time" name="arrival-time" value="{{arrTime}}" readonly><br>
+
+        <label for="ticket-price">Ticket Price:</label>
+        <input type="text" id="ticket-price" name="ticket-price" value="{{ticketPrice}}" readonly><br> -->
+
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name"><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email"><br>
+
+        <label for="phoneNum">Phone Number:</label>
+        <input type="text" id="phoneNum" name="phoneNum"><br>
+
+
+        <button  class="book-now" type="submit">Book Now</button>
+      </form>
+    </section>
+
+    <section>
+      <h2>Booking Confirmation</h2>
+    {% if message %}
+    <p>{{ message }}</p>
+    {% endif %}
+ 
+    </section>
+  </main>
+       </div>
+  <footer>
+    
+      <p>&copy; 2023 Train Ticketing System</p>
+  </footer>
+</body>
+</html>
+
+
