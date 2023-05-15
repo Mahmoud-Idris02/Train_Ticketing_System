@@ -18,9 +18,9 @@ This is a simple train booking system built using Django web framework. The syst
 1. Open your web browser and go to `http://localhost:8000/`.
 2. Enter the source and destination cities in the search form and click on the "Search" button.
 3. The available train trips will be displayed on the same page.
-4. To book a ticket, click on the "Book Now" button next to the trip you want to book.
-5. Enter your details in the booking form and click on the "Book Now" button.
-6. If the booking is successful, a message will be displayed on the same page.
+
+4. Enter your details in the booking form and click on the "Book Now" button.
+5. If the booking is successful, a message will be displayed on the same page.
 
 ## Demo 
 
